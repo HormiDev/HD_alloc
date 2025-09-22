@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alloc.c                                         :+:      :+:    :+:   */
+/*   hd_u_free_hd_alloc_list_node.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/13 20:08:01 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/09/13 20:49:55 by ide-dieg         ###   ########.fr       */
+/*   Created: 2025/09/20 22:47:36 by ide-dieg          #+#    #+#             */
+/*   Updated: 2025/09/21 00:53:05 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_alloc.h"
-#include "ft_alloc_utils.h"
+#include "hd_alloc_utils.h"
 
-void	*ft_alloc(size_t count, size_t size)
+void	hd_u_free_hd_alloc_list_node(t_hd_alloc_list *node)
 {
-	void	*ptr;
-
-	ptr = malloc(count * size);
-	if (!ptr)
-	{
-		fprintf(stderr, "Memory allocation failed\n");
-		exit(EXIT_FAILURE);
-	}
-	memset(ptr, 0, count * size);
-	return (ptr);
+	if (!node)
+		return ;
+	if (node->free_func && node->content)
+		node->free_func(node->content);
+	free(node);
 }

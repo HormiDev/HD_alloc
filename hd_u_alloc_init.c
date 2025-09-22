@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_alloc.c                                     :+:      :+:    :+:   */
+/*   hd_u_alloc_init.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/13 20:41:33 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/09/13 20:56:39 by ide-dieg         ###   ########.fr       */
+/*   Created: 2025/09/20 03:00:10 by ide-dieg          #+#    #+#             */
+/*   Updated: 2025/09/20 03:04:11 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_alloc_utils.h"
+#include "hd_alloc_utils.h"
 
-/**
- * @brief Retorna un puntero estático a una estructura t_alloc.
- * 
- * Esta función asegura que solo exista una instancia de t_alloc
- * durante la ejecución del programa.
- * @return t_alloc * Puntero a la estructura t_alloc.
- */
-t_alloc	*ft_get_alloc(void)
+t_hd_alloc *hd_u_alloc_init(void)
 {
-	static t_alloc	*alloc;
+	t_hd_alloc *alloc;
 
+	alloc = (t_hd_alloc *)malloc(sizeof(t_hd_alloc));
 	if (!alloc)
-	{
-		alloc = malloc(sizeof(t_alloc));
-		alloc->alloc_list = 0;
-		alloc->malloc_calloc = 0;
-	}
+		return (NULL);
+	alloc->alloc_list = NULL;
+	alloc->error_func = NULL;
 	return (alloc);
 }
