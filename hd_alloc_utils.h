@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 20:07:58 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/09/21 22:06:45 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/10/09 16:21:52 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,16 @@
 
 typedef struct s_hd_alloc_list
 {
-	void *content;
-	void (*free_func)(void *);
-	struct s_hd_alloc_list *next;
+	void					*content;
+	void					(*free_func)(void *);
+	struct s_hd_alloc_list	*next;
 } t_hd_alloc_list;
 
 typedef struct s_hd_alloc
 {
 	t_hd_alloc_list *alloc_list;
-	void *(*error_func)(void *);
+	void			*(*error_func)(void);
+	void			*error_ptr;
 } t_hd_alloc;
 
 t_hd_alloc		*hd_u_alloc_init(void);
@@ -36,7 +37,6 @@ t_hd_alloc_list	*hd_u_get_hd_alloc_list_prev_node(t_hd_alloc *alloc, void *conte
 void			hd_u_add_last_hd_alloc_list(t_hd_alloc *alloc, t_hd_alloc_list *new_node);
 void			hd_u_add_front_hd_alloc_list(t_hd_alloc *alloc, t_hd_alloc_list *new_node);
 void			hd_u_free_hd_alloc_list_node(t_hd_alloc_list *node);
-void			hd_u_clear_hd_alloclist(t_hd_alloc *alloc);
 
 
 #endif

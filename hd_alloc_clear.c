@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hd_u_get_alloc.c                                   :+:      :+:    :+:   */
+/*   hd_alloc_clear.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/20 03:05:05 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/10/09 16:22:36 by ide-dieg         ###   ########.fr       */
+/*   Created: 2025/09/21 12:17:56 by ide-dieg          #+#    #+#             */
+/*   Updated: 2025/09/29 13:45:30 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hd_alloc_utils.h"
+#include "hd_alloc.h"
 
-t_hd_alloc *hd_u_get_alloc(void)
+void	hd_alloc_clear()
 {
-	static t_hd_alloc	alloc;
-	
-	return (&alloc);
+	t_hd_alloc		*alloc;
+	t_hd_alloc_list	*current;
+	t_hd_alloc_list	*next;
+
+	current = alloc->alloc_list;
+	while (current)
+	{
+		next = current->next;
+		hd_u_free_hd_alloc_list_node(current);
+		current = next;
+	}
+	alloc->alloc_list = 0;
 }
