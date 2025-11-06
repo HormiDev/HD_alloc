@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hd_alloc_error_func_a.c                            :+:      :+:    :+:   */
+/*   hd_alloc_error_func_d.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 16:05:26 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/05 19:44:22 by ide-dieg         ###   ########.fr       */
+/*   Created: 2025/11/05 20:13:26 by ide-dieg          #+#    #+#             */
+/*   Updated: 2025/11/06 01:05:52 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 #include "hd_alloc_utils.h"
 
 /**
- * @brief Funcion de error para hd_alloc que limpia la memoria asignada con
- * hd_alloc y devuelve NULL.
- * 
- * @return void* Siempre devuelve NULL.
+ * @brief Funcion de error para hd_alloc que imprime un mensaje de error,
+ * limpia la memoria asignada con hd_alloc y termina el programa con
+ * EXIT_FAILURE.
+ *
+ * @return void* Nunca devuelve, ya que termina el programa.
  */
-void	*hd_alloc_error_func_a(void)
+void	*hd_alloc_error_func_d(void)
 {
 	t_hd_alloc *alloc;
 
+	write(2, "hd_alloc: memory allocation error\n", 35);
 	alloc = hd_u_get_alloc();
 	hd_alloc_clear();
-	return(0);
+	exit(EXIT_FAILURE);
 }

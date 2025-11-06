@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 20:08:04 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/10/09 16:21:06 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/11/06 01:10:04 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@
 #include <stdlib.h>
 
 void	*hd_alloc(void *ptr, void (*free_func)(void *));
+void	*hd_malloc(size_t size);
 void	hd_alloc_clear(void);
+void	hd_free(void *ptr);
 
 void	*hd_alloc_error_func_a(void);
+void	*hd_alloc_error_func_b(void);
+void	*hd_alloc_error_func_c(void);
+void	*hd_alloc_error_func_d(void);
 
 #endif

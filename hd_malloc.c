@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hd_alloc_error_func_a.c                            :+:      :+:    :+:   */
+/*   hd_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 16:05:26 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/05 19:44:22 by ide-dieg         ###   ########.fr       */
+/*   Created: 2025/11/05 19:58:24 by ide-dieg          #+#    #+#             */
+/*   Updated: 2025/11/05 19:59:18 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hd_alloc.h"
-#include "hd_alloc_utils.h"
 
-/**
- * @brief Funcion de error para hd_alloc que limpia la memoria asignada con
- * hd_alloc y devuelve NULL.
- * 
- * @return void* Siempre devuelve NULL.
- */
-void	*hd_alloc_error_func_a(void)
+void	*hd_malloc(size_t size)
 {
-	t_hd_alloc *alloc;
+	void	*ptr;
 
-	alloc = hd_u_get_alloc();
-	hd_alloc_clear();
-	return(0);
+	ptr = malloc(size);
+	if (!ptr)
+		return (hd_alloc_error_func_b());
+	return (hd_alloc(ptr, free));
 }
