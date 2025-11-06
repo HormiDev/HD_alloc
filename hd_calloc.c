@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hd_malloc.c                                        :+:      :+:    :+:   */
+/*   hd_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/05 19:58:24 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/06 18:23:04 by ide-dieg         ###   ########.fr       */
+/*   Created: 2025/11/06 18:17:17 by ide-dieg          #+#    #+#             */
+/*   Updated: 2025/11/06 18:23:51 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hd_alloc.h"
 
-void	*hd_malloc(size_t size)
+void	*hd_calloc(size_t count, size_t size)
 {
-	void	*ptr;
+	char	*ptr;
+	size_t	i;
 
-	ptr = malloc(size);
+	ptr = malloc(count * size);
 	if (!ptr)
 		return (0);
+	i = 0;
+	while (i < count * size)
+	{
+		ptr[i] = 0;
+		i++;
+	}
 	return (hd_alloc(ptr, free));
 }

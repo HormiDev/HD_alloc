@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:44:28 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/05 20:14:33 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/11/06 19:22:58 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 /**
  * @brief Funcion de error para hd_alloc que limpia la memoria asignada con
  * hd_alloc y termina el programa con EXIT_FAILURE.
+ * 
+ * Para usar esta función como manejador de errores, llame a
+ * `hd_alloc_set_error_func(hd_alloc_error_func_b);`
  * 
  * @return void* Nunca devuelve, ya que termina el programa.
  */

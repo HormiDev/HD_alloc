@@ -6,13 +6,21 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 12:17:56 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/09/29 13:45:30 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/11/06 19:26:45 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hd_alloc_utils.h"
 #include "hd_alloc.h"
 
+
+/**
+ * @brief Libera toda la memoria asignada con hd_alloc y limpia la lista de
+ * asignaciones.
+ * 
+ * Esta función debe ser llamada cuando ya no se necesita la memoria asignada
+ * con hd_alloc.
+ */
 void	hd_alloc_clear()
 {
 	t_hd_alloc		*alloc;

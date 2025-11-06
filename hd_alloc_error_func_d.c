@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 20:13:26 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/06 01:05:52 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/11/06 19:23:28 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
  * @brief Funcion de error para hd_alloc que imprime un mensaje de error,
  * limpia la memoria asignada con hd_alloc y termina el programa con
  * EXIT_FAILURE.
+ * 
+ * Para usar esta función como manejador de errores, llame a
+ * `hd_alloc_set_error_func(hd_alloc_error_func_d);`
  *
  * @return void* Nunca devuelve, ya que termina el programa.
  */
@@ -27,5 +30,5 @@ void	*hd_alloc_error_func_d(void)
 	write(2, "hd_alloc: memory allocation error\n", 35);
 	alloc = hd_u_get_alloc();
 	hd_alloc_clear();
-	exit(EXIT_FAILURE);
+	exit(1);
 }
