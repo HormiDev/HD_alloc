@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 12:17:56 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/06 19:26:45 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/11/09 18:42:03 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	hd_alloc_clear()
 	t_hd_alloc_list	*current;
 	t_hd_alloc_list	*next;
 
+	alloc = hd_u_get_alloc();
 	current = alloc->alloc_list;
 	while (current)
 	{

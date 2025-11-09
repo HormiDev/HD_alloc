@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:47:42 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/05 19:57:45 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/11/09 19:48:36 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	hd_free(void *ptr)
 				prev->next = current->next;
 			else
 				alloc->alloc_list = current->next;
-			if (current->free_func)
-				current->free_func(current->content);
 			hd_u_free_hd_alloc_list_node(current);
 			return ;
 		}

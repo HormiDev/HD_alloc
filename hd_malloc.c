@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:58:24 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/06 18:23:04 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/11/09 20:57:26 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	*hd_malloc(size_t size)
 
 	ptr = malloc(size);
 	if (!ptr)
-		return (0);
+		hd_alloc_clear();
 	return (hd_alloc(ptr, free));
 }

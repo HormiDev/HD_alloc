@@ -1,0 +1,6 @@
+*.out
+*.a
+*.o
+.*
+!.gitignore
+test_hd_alloc

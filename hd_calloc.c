@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:17:17 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/06 18:23:51 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/11/09 20:27:56 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*hd_calloc(size_t count, size_t size)
 
 	ptr = malloc(count * size);
 	if (!ptr)
-		return (0);
+		return (hd_alloc(ptr, free));
 	i = 0;
 	while (i < count * size)
 	{

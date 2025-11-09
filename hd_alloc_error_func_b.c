@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:44:28 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/06 19:22:58 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/11/09 18:35:42 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@
  */
 void	*hd_alloc_error_func_b(void)
 {
-	t_hd_alloc *alloc;
-
-	alloc = hd_u_get_alloc();
 	hd_alloc_clear();
 	exit(EXIT_FAILURE);
+	return (0);
 }

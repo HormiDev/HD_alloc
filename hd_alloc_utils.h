@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 20:07:58 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/10/09 16:21:52 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/11/09 18:33:46 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define HD_ALLOC_UTILS_H
 
 #include <stdlib.h>
+#include <unistd.h>
 
 typedef struct s_hd_alloc_list
 {
