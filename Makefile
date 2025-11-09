@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/09 18:18:19 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/11/09 20:33:38 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/11/09 23:41:07 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,9 @@ test: all
 	@$(CC) $(CFLAGS) tests/test2.c $(NAME) -o test_hd_alloc; \
 	if [ -f test_hd_alloc ]; then \
 		echo "$(VERDE)Compiled test_hd_alloc successfully!$(NC)"; \
+		ulimit -v 1048576; \
+		valgrind ./test_hd_alloc; \
+		rm -f test_hd_alloc; \
 	else \
 		echo "$(ROJO)Failed to compile test_hd_alloc$(NC)"; \
 	fi

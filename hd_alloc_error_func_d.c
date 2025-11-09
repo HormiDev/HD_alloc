@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 20:13:26 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/09 21:08:52 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/11/09 23:35:27 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  */
 void	*hd_alloc_error_func_d(void)
 {
-	hd_alloc_clear();
 	write(2, "hd_alloc: memory allocation error\n", 35);
+	hd_alloc_clear();
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 20:06:35 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/09 21:35:19 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/11/09 23:42:55 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,21 @@ int main(void)
 
 	while(ptr)
 	{
-		ptr = hd_alloc(malloc(1024 * 1024 * 10), free);
-		if (++i % 50000 == 0)
+		ptr = hd_malloc(1024 * 1024);
+		if (++i % 100 == 0)
 			write(1, ".", 1);
 	}
+	write(1, "\nExited loop", 13);
+	hd_alloc_clear();
 	return (0);
 }
+/*
+int main(void)
+{
+	void *ptr;
+	
+	ptr = (void *)1;
+	while (ptr)
+		ptr = malloc(1024 * 1024 * 10);
+	exit (1);
+}*/
