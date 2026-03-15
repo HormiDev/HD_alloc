@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/09 18:18:19 by ide-dieg          #+#    #+#              #
-#    Updated: 2026/03/13 04:07:07 by ide-dieg         ###   ########.fr        #
+#    Updated: 2026/03/15 04:49:49 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ src = hd_alloc.c \
       hd_alloc_set_error_ptr.c \
       hd_u_add_front_hd_alloc_list.c \
       hd_u_get_alloc.c \
-	  hd_open.c
+	  hd_open.c \
+	  hd_fork.c
 
 ROJO = \033[0;31m
 NC = \033[0m
@@ -80,32 +81,42 @@ fclean: clean
 re: fclean all
 
 test: all
+	rm -fr .tmp
 	mkdir .tmp
-	@$(CC) $(CFLAGS) tests/test1.c $(NAME) -o test_hd_alloc; \
-	if [ -f test_hd_alloc ]; then \
-		echo "$(VERDE)Compiled test_hd_alloc successfully!$(NC)"; \
-		valgrind ./test_hd_alloc; \
-		rm -f test_hd_alloc; \
+	@$(CC) $(CFLAGS) tests/test1.c $(NAME) -o test1_hd_alloc; \
+	if [ -f test1_hd_alloc ]; then \
+		echo "$(VERDE)Compiled test1_hd_alloc successfully!$(NC)"; \
+		valgrind ./test1_hd_alloc; \
+		rm -f test1_hd_alloc; \
 	else \
-		echo "$(ROJO)Failed to compile test_hd_alloc$(NC)"; \
+		echo "$(ROJO)Failed to compile test1_hd_alloc$(NC)"; \
 	fi
-	@$(CC) $(CFLAGS) tests/test2.c $(NAME) -o test_hd_alloc; \
-	if [ -f test_hd_alloc ]; then \
-		echo "$(VERDE)Compiled test_hd_alloc successfully!$(NC)"; \
+	@$(CC) $(CFLAGS) tests/test2.c $(NAME) -o test2_hd_alloc; \
+	if [ -f test2_hd_alloc ]; then \
+		echo "$(VERDE)Compiled test2_hd_alloc successfully!$(NC)"; \
 		ulimit -v 1048576; \
-		valgrind ./test_hd_alloc; \
-		rm -f test_hd_alloc; \
+		valgrind ./test2_hd_alloc; \
+		rm -f test2_hd_alloc; \
 	else \
-		echo "$(ROJO)Failed to compile test_hd_alloc$(NC)"; \
+		echo "$(ROJO)Failed to compile test2_hd_alloc$(NC)"; \
 	fi
-	@$(CC) $(CFLAGS) tests/test_open.c $(NAME) -o test_hd_alloc; \
-	if [ -f test_hd_alloc ]; then \
-		echo "$(VERDE)Compiled test_hd_alloc successfully!$(NC)"; \
+	@$(CC) $(CFLAGS) tests/test_open.c $(NAME) -o test_open_hd_alloc; \
+	if [ -f test_open_hd_alloc ]; then \
+		echo "$(VERDE)Compiled test_open_hd_alloc successfully!$(NC)"; \
 		ulimit -v 1048576; \
-		valgrind --leak-check=full --track-fds=yes ./test_hd_alloc; \
-		rm -f test_hd_alloc; \
+		valgrind --leak-check=full --track-fds=yes ./test_open_hd_alloc; \
+		rm -f test_open_hd_alloc; \
 	else \
-		echo "$(ROJO)Failed to compile test_hd_alloc$(NC)"; \
+		echo "$(ROJO)Failed to compile test_open_hd_alloc$(NC)"; \
+	fi
+	@$(CC) $(CFLAGS) tests/test_fork.c $(NAME) -o test_fork_hd_alloc; \
+	if [ -f test_fork_hd_alloc ]; then \
+		echo "$(VERDE)Compiled test_fork_hd_alloc successfully!$(NC)"; \
+		ulimit -v 1048576; \
+		valgrind --leak-check=full --trace-children=yes ./test_fork_hd_alloc; \
+		rm -f test_fork_hd_alloc; \
+	else \
+		echo "$(ROJO)Failed to compile test_fork_hd_alloc$(NC)"; \
 	fi
 	rm -fr .tmp
 
