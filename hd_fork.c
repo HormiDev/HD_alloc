@@ -6,12 +6,11 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 12:14:24 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/03/15 05:15:13 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/03/17 18:47:09 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hd_alloc.h"
-#include <sys/wait.h>
 
 /**
  * @brief Libera el PID registrado y solicita la finalización del hijo.
@@ -59,11 +58,11 @@ static void	hd_fork_child_signal_handler(int sig)
  * Nota: SIGKILL no puede capturarse ni interceptarse, por lo que no existe
  * garantía de limpieza si el proceso se termina con `kill -9`.
  */
-static void	hd_fork_child_setup_cleanup(void)
+static void	hd_fork_child_setup_cleanup(void (*signal_handler)(int))
 {
 	struct sigaction	sa;
 
-	sa.sa_handler = hd_fork_child_signal_handler;
+	sa.sa_handler = signal_handler;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGTERM, &sa, NULL);
@@ -96,6 +95,31 @@ pid_t hd_fork(void)
 		return (-1);
 	*pid_ptr = fork();
 	if (*pid_ptr == 0)
-		hd_fork_child_setup_cleanup();
+		hd_fork_child_setup_cleanup(hd_fork_child_signal_handler);
+	return (*pid_ptr);
+}
+
+/**
+ * @brief Crea un proceso hijo y registra su PID en HD_alloc.
+ *
+ * Esta función encapsula fork() y reserva memoria gestionada por HD_alloc
+ * para guardar el PID resultante. En el proceso padre, ese PID queda
+ * asociado a un destructor que intentará terminar al hijo con SIGTERM al
+ * liberar la memoria. En el proceso hijo, se instalan manejadores para
+ * señales de terminación controlada.
+ *
+ * @param signal_handler Puntero a la función que manejará las señales.
+ * @return PID del hijo en el padre, 0 en el hijo y -1 si falla la reserva.
+ */
+pid_t hd_fork_cleanable(void (*signal_handler)(int))
+{
+	pid_t *pid_ptr;
+	
+	pid_ptr = hd_alloc(malloc(sizeof(pid_t)), hd_kill_free_fork);
+	if (!pid_ptr)
+		return (-1);
+	*pid_ptr = fork();
+	if (*pid_ptr == 0)
+		hd_fork_child_setup_cleanup(signal_handler);
 	return (*pid_ptr);
 }

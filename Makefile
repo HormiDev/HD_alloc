@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/09 18:18:19 by ide-dieg          #+#    #+#              #
-#    Updated: 2026/03/15 04:49:49 by ide-dieg         ###   ########.fr        #
+#    Updated: 2026/03/17 18:50:11 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,8 +81,8 @@ fclean: clean
 re: fclean all
 
 test: all
-	rm -fr .tmp
-	mkdir .tmp
+	@rm -fr .tmp
+	@mkdir .tmp
 	@$(CC) $(CFLAGS) tests/test1.c $(NAME) -o test1_hd_alloc; \
 	if [ -f test1_hd_alloc ]; then \
 		echo "$(VERDE)Compiled test1_hd_alloc successfully!$(NC)"; \
@@ -118,7 +118,7 @@ test: all
 	else \
 		echo "$(ROJO)Failed to compile test_fork_hd_alloc$(NC)"; \
 	fi
-	rm -fr .tmp
+	@rm -fr .tmp
 
 .PHONY: all clean fclean re
 
