@@ -6,14 +6,13 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 00:24:09 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/03/13 03:29:44 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/04/10 04:10:40 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "hd_alloc.h"
 
-void hd_free_open(void *file_ptr)
+void	hd_free_open(void *file_ptr)
 {
 	close(*(int *)file_ptr);
 	free(file_ptr);

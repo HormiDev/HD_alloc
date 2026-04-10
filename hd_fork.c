@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 12:14:24 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/03/17 18:47:09 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/04/10 04:12:28 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@
  *
  * @param pid_ptr Puntero a un pid_t dinámico con el PID del proceso hijo.
  */
-static void hd_kill_free_fork(void *pid_ptr)
+static void	hd_kill_free_fork(void *pid_ptr)
 {
-	pid_t pid = *(pid_t *)pid_ptr;
+	pid_t	pid;
+
+	pid = *(pid_t *)pid_ptr;
 	if (pid > 0)
 	{
 		if (kill(pid, SIGTERM) != -1)
@@ -86,10 +88,10 @@ static void	hd_fork_child_setup_cleanup(void (*signal_handler)(int))
  *
  * @return PID del hijo en el padre, 0 en el hijo y -1 si falla la reserva.
  */
-pid_t hd_fork(void)
+pid_t	hd_fork(void)
 {
-	pid_t *pid_ptr;
-	
+	pid_t	*pid_ptr;
+
 	pid_ptr = hd_alloc(malloc(sizeof(pid_t)), hd_kill_free_fork);
 	if (!pid_ptr)
 		return (-1);
@@ -111,10 +113,10 @@ pid_t hd_fork(void)
  * @param signal_handler Puntero a la función que manejará las señales.
  * @return PID del hijo en el padre, 0 en el hijo y -1 si falla la reserva.
  */
-pid_t hd_fork_cleanable(void (*signal_handler)(int))
+pid_t	hd_fork_cleanable(void (*signal_handler)(int))
 {
-	pid_t *pid_ptr;
-	
+	pid_t	*pid_ptr;
+
 	pid_ptr = hd_alloc(malloc(sizeof(pid_t)), hd_kill_free_fork);
 	if (!pid_ptr)
 		return (-1);

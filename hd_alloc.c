@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 12:20:44 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/09 23:18:30 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/04/10 04:09:57 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 void	*hd_alloc(void *ptr, void (*free_func)(void *))
 {
 	t_hd_alloc		*alloc;
-	t_hd_alloc_list *new_alloc;
+	t_hd_alloc_list	*new_alloc;
 
 	alloc = hd_u_get_alloc();
 	if (!ptr)
@@ -57,5 +57,5 @@ void	*hd_alloc(void *ptr, void (*free_func)(void *))
 		return (0);
 	}
 	hd_u_add_front_hd_alloc_list(alloc, new_alloc);
-	return(ptr);
+	return (ptr);
 }

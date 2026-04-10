@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 21:00:31 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/09/20 13:26:45 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/04/10 04:08:48 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
  * @return t_hd_alloc_list* Puntero al nuevo nodo de asignación, o NULL si
  * falla la asignación.
  */
-t_hd_alloc_list	*hd_u_new_hd_alloc_list(void *content, void (*free_func)(void *))
+t_hd_alloc_list	*hd_u_new_hd_alloc_list(void *content,
+	void (*free_func)(void *))
 {
 	t_hd_alloc_list	*new_node;
 

@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 20:06:35 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/11/09 23:42:55 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/04/10 03:57:30 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int main(void)
+int	main(void)
 {
-	int i = 0;
-	hd_alloc_set_error_func(hd_alloc_error_func_d);
-	void *ptr = (void *)1;
+	int		i;
+	void	*ptr;
 
-	while(ptr)
+	i = 0;
+	ptr = (void *)1;
+	hd_alloc_set_error_func(hd_alloc_error_func_d);
+	while (ptr)
 	{
 		ptr = hd_malloc(1024 * 1024);
 		if (++i % 100 == 0)
